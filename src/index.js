@@ -1,2 +1,2 @@
-import './style.scss';
-import FormContainer from "./js/components/container/FormContainer"
+import './main.scss';
+// import FormContainer from "./js/components/container/FormContainer"
