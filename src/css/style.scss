@@ -11,10 +11,10 @@
     "rightcol leftcol";
     grid-column-gap: 16px;
     // griding child 
-    & .right_col {
+    & #right_col {
     grid-area: rightcol;
     }
-    & .left_col {
+    & #left_col {
         grid-area: leftcol;
     }
 }
