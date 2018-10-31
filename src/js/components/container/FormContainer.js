@@ -20,6 +20,25 @@ class FormContainer extends Component {
 
   render() {
     const { seo_title } = this.state;
+
+
+    // const fun1 = ({ mamad }) => {
+    //   console.log(mamad);
+    // };
+
+    // fun1(myObs);
+
+    // const myObs = {
+    //   foo: 'bar',
+    //   mamad: 'kachal',
+    // };
+
+    // const { mamad } = myObs;
+
+    // const myArray = [1, 2, 3];
+
+    // const [, , sevmomi] = myArray;
+
     return (
       <form id="article-form">
         <Input

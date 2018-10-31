@@ -4,7 +4,7 @@ function NewsCode (params) {
   return (
     <div>
       <h1>
-        salaaamm {params.name}
+        کد خبر :  {params.name}
       </h1>
     </div>
   )
