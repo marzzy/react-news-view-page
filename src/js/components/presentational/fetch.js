@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
@@ -22,7 +23,7 @@ class App extends React.Component {
           email: `${user.email}`,
           image: `${user.picture.thumbnail}`
         }))
-      )
+        )
       .then(users => {
         this.setState({
           users,

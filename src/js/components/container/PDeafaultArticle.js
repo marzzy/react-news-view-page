@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import NewsCode from '../presentational/PDefaultMainComponents';
 
@@ -7,57 +9,78 @@ class NewsDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newsId: 123,
-      persons: ['ahmad'],
-      posts: [
-        {
-          "id": "1034",
-          "title": "کشف ۱۰۲ تن مواد مخدر و انهدام ۹۳ باند مسلح در سیستان و بلوچستان",
-        },
-        {
-          "id": "2034",
-          "title": "امروز عرصه جنگ خیبر و احزاب است",
-        }
-      ],
+      newsData: [],
+      isLoading: true,
+      errors: null
     };
-    // var newsDet = {};
   }
 
-  getNewsContent() {
-    axios.get(`http://127.0.0.1:8080/src/sample/news.json`)
-      .then(function (response) {
-        // this.setState(pervstate => ({
-        //   posts: pervstate.posts.concat([
-        //     {
-        //       "id": "12333",
-        //       "title": "کشف ۱۰۲ تن مواد مخدر و انهدام ۹۳ باند مسلح در سیستان و بلوچستان",
-        //     },
-        //     {
-        //       "id": "4366",
-        //       "title": "امروز عرصه جنگ خیبر و احزاب است",
-        //     }
-        //   ])
-        // }));
-      });
-    }
+  getNews() {
+    axios
+      .get("http://127.0.0.1:8080/src/sample/news.json")
+      .then(response =>
+        response.data.map(news => ({
+          id: `${news.id}`,
+          title: `${news.title}`,
+          lead: `${news.lead}`,
+          uptitle: `${news.uptitle}`
+        }))
+      )
+      .then(newsData => {
+        this.setState({
+          newsData,
+          isLoading: false
+        });
+      })
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
+
+  componentDidMount() {
+    this.getNews();
+  }
+  // getNewsContent() {
+  //   axios.get(`http://127.0.0.1:8080/src/sample/news.json`)
+  //     .then(function (response) {
+  //       // this.setState(pervstate => ({
+  //       //   posts: pervstate.posts.concat([
+  //       //     {
+  //       //       "id": "12333",
+  //       //       "title": "کشف ۱۰۲ تن مواد مخدر و انهدام ۹۳ باند مسلح در سیستان و بلوچستان",
+  //       //     },
+  //       //     {
+  //       //       "id": "4366",
+  //       //       "title": "امروز عرصه جنگ خیبر و احزاب است",
+  //       //     }
+  //       //   ])
+  //       // }));
+  //     });
+  //   }
 
   render () {
+    const { isLoading, newsData } = this.state;
     return (
       <div>
-        <p onClick={() => {return this.getNewsContent()} } className='red' >
-          {this.state.newsId}
-          hooo
-        </p>
+        <React.Fragment>
+          {!isLoading ? (
+            newsData.map(news => {
+              const { id, title, lead, uptitle } = news;
+              return (
+                <div key={id}>
+                  <p>{title}</p>
+                  <p>{uptitle}</p>
+                  <p>{lead}</p>
+                  <hr />
+                </div>
+              );
+            })
+          ) : (
+              <p>Loading...</p>
+            )}
+            dfdfdf
+        </React.Fragment>
 
-
-        <div>
-          <ul>
-            {this.state.posts.map(post => <li key={post.id} >{post.title}</li>)}
-          </ul>
+          <NewsCode name='sara' />
         </div>
-
-        <NewsCode name={this.state.newsId} />
-      </div>
     )
   }
 }
