@@ -1,9 +1,56 @@
-/* eslint-disable */
+
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import NewsCode from '../presentational/PDefaultMainComponents';
+import { NewsCode, MainNewsComp} from '../presentational/PDefaultMainComponents';
+
+class MainNews extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mainNewsData: [],
+      isLoading: true,
+      errors: null
+    };
+  }
+
+  getNews() {
+    axios
+      .get("http://127.0.0.1:8080/src/sample/mainnews.json")
+      .then(res => {
+        let news = res.data;
+        this.setState({
+          mainNewsData: news,
+          isLoading: false
+        });
+      })
+      .catch(error => this.setState({ error, isLoading: false }));
+  }
+
+  componentDidMount() {
+    this.getNews();
+  }
+
+  render() {
+    const { isLoading, mainNewsData } = this.state;
+    return (
+      <div>
+        <React.Fragment>
+          {!isLoading ? 
+            (
+              <div>
+                <MainNewsComp newsdata={mainNewsData} />
+              </div>  
+            ) : (
+              <p>Loading...</p>
+            )
+          }
+        </React.Fragment>
+      </div>
+    );
+  }
+}
 
 class NewsDetails extends Component {
   constructor(props) {
@@ -19,7 +66,7 @@ class NewsDetails extends Component {
     axios
       .get("http://127.0.0.1:8080/src/sample/news.json")
       .then(response =>
-        response.data.map(news => ({
+        response.data.res.map(news => ({
           id: `${news.id}`,
           title: `${news.title}`,
           lead: `${news.lead}`,
@@ -38,23 +85,6 @@ class NewsDetails extends Component {
   componentDidMount() {
     this.getNews();
   }
-  // getNewsContent() {
-  //   axios.get(`http://127.0.0.1:8080/src/sample/news.json`)
-  //     .then(function (response) {
-  //       // this.setState(pervstate => ({
-  //       //   posts: pervstate.posts.concat([
-  //       //     {
-  //       //       "id": "12333",
-  //       //       "title": "کشف ۱۰۲ تن مواد مخدر و انهدام ۹۳ باند مسلح در سیستان و بلوچستان",
-  //       //     },
-  //       //     {
-  //       //       "id": "4366",
-  //       //       "title": "امروز عرصه جنگ خیبر و احزاب است",
-  //       //     }
-  //       //   ])
-  //       // }));
-  //     });
-  //   }
 
   render () {
     const { isLoading, newsData } = this.state;
@@ -63,31 +93,25 @@ class NewsDetails extends Component {
         <React.Fragment>
           {!isLoading ? (
             newsData.map(news => {
-              const { id, title, lead, uptitle } = news;
+              const {id} = news;
               return (
                 <div key={id}>
-                  <p>{title}</p>
-                  <p>{uptitle}</p>
-                  <p>{lead}</p>
-                  <hr />
+                  <NewsCode thenews={news} />
                 </div>
               );
             })
           ) : (
               <p>Loading...</p>
             )}
-            dfdfdf
         </React.Fragment>
-
-          <NewsCode name='sara' />
-        </div>
-    )
+      </div>
+    );
   }
 }
 
-// export default NewsDetails
-
-// const wrapper = document.getElementById('right_col')
-// if (wrapper) {
-//   ReactDOM.render(<NewsDetails />, wrapper)
-// }
+const leftwrapper = document.getElementById('left_col')
+const rightwrapper = document.getElementById('right_col')
+if (leftwrapper) {
+  ReactDOM.render(<NewsDetails />, leftwrapper);
+  ReactDOM.render(<MainNews />, rightwrapper);
+}

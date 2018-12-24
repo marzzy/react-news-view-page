@@ -1,20 +1,20 @@
 // html style
-.main-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    direction: rtl;
-
-    // griding detail
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-areas: 
-    "rightcol leftcol";
-    grid-column-gap: 16px;
-    // griding child 
-    & #right_col {
-    grid-area: rightcol;
-    }
-    & #left_col {
-        grid-area: leftcol;
-    }
+// .main-container {
+//     & #right_col {
+//     }
+//     & #left_col {
+//     }
+// }
+.title {
+    color: darkcyan;
+    font-weight: bold;
+    font-size: 17px;
+}
+.uptitle {
+    color: #034242cc;
+    font-size: 14px;
+}
+.lead {
+	color: #034242cc;
+	font-size: 16px;
 }

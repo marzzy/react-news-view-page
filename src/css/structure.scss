@@ -1,0 +1,22 @@
+// html structure
+.body-struct {
+    max-width: 1280px;
+    margin: 0 auto;
+    direction: rtl;
+    
+    .main-container {
+        // griding detail
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-areas: 
+        "rightcol leftcol";
+        grid-column-gap: 16px;
+        // griding child 
+        & #right_col {
+        grid-area: rightcol;
+        }
+        & #left_col {
+            grid-area: leftcol;
+        }
+    }
+}
