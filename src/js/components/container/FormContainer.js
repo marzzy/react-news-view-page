@@ -1,53 +1,55 @@
 /* eslint-disable */
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import Input from "../presentational/Input";
+
 
 class FormContainer extends Component {
   constructor() {
     super();
 
     this.state = {
-      seo_title: ""
+      name: ["ggff",false],
+      email:"",
+      txtbody: "",
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeS = this.handleChangeSimple.bind(this);
+    this.handleChangeE = this.handleChangeEmail.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.id]: event.target.value });
+  handleChangeSimple(event) {
+    // (console.log(event.target.value.length));
+    (console.log(event.target.value));
+    this.setState({ [event.target.id[0]]: event.target.value }) 
+    (event.target.value.length)?
+    console.log('omad'):console.log('naUmad');
+
+  }
+  handleChangeEmail(event) {
+    // console.log();
+    // (event.target.value)?
+      this.setState({ [event.target.id]: event.target.value })
   }
 
   render() {
-    const { seo_title } = this.state;
-
-
-    // const fun1 = ({ mamad }) => {
-    //   console.log(mamad);
-    // };
-
-    // fun1(myObs);
-
-    // const myObs = {
-    //   foo: 'bar',
-    //   mamad: 'kachal',
-    // };
-
-    // const { mamad } = myObs;
-
-    // const myArray = [1, 2, 3];
-
-    // const [, , sevmomi] = myArray;
-
+    const { name: [nameval,namecheck], email } = this.state;
     return (
       <form id="article-form">
         <Input
-          text="SEO title"
-          label="seo_title"
+          text="نام"
+          label="name"
           type="text"
-          id="seo_title"
-          value={seo_title}
-          handleChange={this.handleChange}
+          id="name"
+          value={nameval}
+          handleChange={this.handleChangeS}
+        />
+        <Input
+          text="ایمیل"
+          label="email"
+          type="email"
+          id="email"
+          value={email}
+          handleChange={this.handleChangeE}
         />
       </form>
     );
@@ -55,6 +57,3 @@ class FormContainer extends Component {
 }
 
 export default FormContainer;
-
-const wrapper = document.getElementById("create-article-form");
-wrapper ? ReactDOM.render(<FormContainer />, wrapper) : false;

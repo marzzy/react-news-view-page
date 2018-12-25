@@ -1,9 +1,10 @@
 
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { NewsCode, MainNewsComp} from '../presentational/PDefaultMainComponents';
+
+const Fragment = React.Fragment;
 
 class MainNews extends Component {
   constructor(props) {
@@ -35,19 +36,17 @@ class MainNews extends Component {
   render() {
     const { isLoading, mainNewsData } = this.state;
     return (
-      <div>
-        <React.Fragment>
-          {!isLoading ? 
-            (
-              <div>
-                <MainNewsComp newsdata={mainNewsData} />
-              </div>  
-            ) : (
-              <p>Loading...</p>
-            )
-          }
-        </React.Fragment>
-      </div>
+      <Fragment>
+        {!isLoading ? 
+          (
+            <div>
+              <MainNewsComp newsdata={mainNewsData} />
+            </div>  
+          ) : (
+            <p>Loading...</p>
+          )
+        }
+      </Fragment>
     );
   }
 }
@@ -89,29 +88,24 @@ class NewsDetails extends Component {
   render () {
     const { isLoading, newsData } = this.state;
     return (
-      <div>
-        <React.Fragment>
-          {!isLoading ? (
-            newsData.map(news => {
-              const {id} = news;
-              return (
-                <div key={id}>
-                  <NewsCode thenews={news} />
-                </div>
-              );
-            })
-          ) : (
-              <p>Loading...</p>
-            )}
-        </React.Fragment>
-      </div>
+      <Fragment>
+        {!isLoading ? (
+          newsData.map(news => {
+            const {id} = news;
+            return (
+              <div key={id}>
+                <NewsCode thenews={news} />
+              </div>
+            );
+          })
+        ) : (
+            <p>Loading...</p>
+          )}
+      </Fragment>
     );
   }
 }
 
-const leftwrapper = document.getElementById('left_col')
-const rightwrapper = document.getElementById('right_col')
-if (leftwrapper) {
-  ReactDOM.render(<NewsDetails />, leftwrapper);
-  ReactDOM.render(<MainNews />, rightwrapper);
-}
+export { NewsDetails, MainNews }
+
+
