@@ -18,3 +18,28 @@
 	color: #034242cc;
 	font-size: 16px;
 }
+.status {
+   &::before {
+        font-size: 20px;
+        padding: 0 4px;
+        box-sizing: border-box;
+    } 
+}
+.fa-right {
+    color: #0ba70b;
+    &::before {
+        content: '✔';
+    }
+}
+.fa-warning {
+    color: orange;
+    &::before {
+        content: '⚠';
+    }
+}
+.fa-wrong {
+    color: red;
+    &::before {
+        content: '✘';
+    }
+}
