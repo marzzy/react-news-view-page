@@ -1,7 +1,20 @@
 {
-    "extends": [
-        "standard",
-        "standard-react",
-        "standard-jsx"
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+     "import/no-extraneous-dependencies": [
+       "error",
+      { "devDependencies": true }
     ]
+  },
+  "globals": {
+    "document": true
+  },
+ "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ]
 }

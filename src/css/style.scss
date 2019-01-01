@@ -1,20 +1,41 @@
-// html style
-.main-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    direction: rtl;
-
-    // griding detail
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-areas: 
-    "rightcol leftcol";
-    grid-column-gap: 16px;
-    // griding child 
-    & #right_col {
-    grid-area: rightcol;
+// NEWS -----------------------------------
+.title {
+    color: darkcyan;
+    font-family: 'ShabnamBold';
+    font-size: 17px;
+}
+.uptitle {
+    color: #034242cc;
+    font-family: 'ShabnamLight';
+    font-size: 14px;
+}
+.lead {
+	color: #034242cc;
+	font-size: 16px;
+}
+// ICON AND STATUS -----------------------------------
+.status {
+   &::before {
+       font-size: 20px;
+       padding: 0 4px;
+        box-sizing: border-box;
+    } 
+}
+.fa-right {
+    color: #0ba70b;
+    &::before {
+        content: '✔';
     }
-    & #left_col {
-        grid-area: leftcol;
+}
+.fa-warning {
+    color: orange;
+    &::before {
+        content: '⚠';
+    }
+}
+.fa-wrong {
+    color: red;
+    &::before {
+        content: '✘';
     }
 }

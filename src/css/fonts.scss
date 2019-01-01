@@ -1,0 +1,26 @@
+@font-face {
+  font-family: Shabnam;
+  src: url('/node_modules/shabnam-font/dist/Shabnam.eot');
+  src: url('/node_modules/shabnam-font/dist/Shabnam.eot?#iefix') format('embedded-opentype'),
+      url('/node_modules/shabnam-font/dist/Shabnam.woff') format('woff'),
+      url('/node_modules/shabnam-font/dist/Shabnam.ttf') format('truetype');
+  font-weight: normal;
+}
+      
+@font-face {
+  font-family: ShabnamBold;
+  src: url('/node_modules/shabnam-font/dist/Shabnam-Bold.eot');
+  src: url('/node_modules/shabnam-font/dist/Shabnam-Bold.eot?#iefix') format('embedded-opentype'),
+      url('/node_modules/shabnam-font/dist/Shabnam-Bold.woff') format('woff'),
+      url('/node_modules/shabnam-font/dist/Shabnam-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: ShabnamLight;
+  src: url('/node_modules/shabnam-font/dist/Shabnam-Light.eot');
+  src: url('/node_modules/shabnam-font/dist/Shabnam-Light.eot?#iefix') format('embedded-opentype'),
+      url('/node_modules/shabnam-font/dist/Shabnam-Light.woff') format('woff'),
+      url('/node_modules/shabnam-font/dist/Shabnam-Light.ttf') format('truetype');
+  font-weight: 300;
+}

@@ -1,0 +1,45 @@
+// html structure
+.body-struct {
+    max-width: 1280px;
+    margin: 0 auto;
+    direction: rtl;
+    font-family: 'Shabnam', sans-serif;
+    line-height: 30px;
+    
+    .main-container {
+        // griding detail
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-areas: 
+        "rightcol leftcol";
+        grid-column-gap: 16px;
+        // griding child 
+        & #right_col {
+        grid-area: rightcol;
+        }
+        & #left_col {
+            grid-area: leftcol;
+        }
+    }
+}
+// comment form structure
+form#article-form {
+    padding: 18px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    & > div {
+        display: flex;
+        justify-content: space-between;
+
+        padding: 6px 0;
+        box-sizing: border-box;
+        label {
+            width: 10%;
+        }
+        span {
+            width: 50%;
+        }
+    }
+}
