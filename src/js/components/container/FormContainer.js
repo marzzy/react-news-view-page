@@ -1,8 +1,6 @@
-/* eslint-disable */
-
 "use strict";
 import React, { Component } from "react";
-import {Input, Textarea} from "../presentational/Input";
+import { Input, Textarea, Submit } from "../presentational/Input";
 
 
 class FormContainer extends Component {
@@ -13,14 +11,44 @@ class FormContainer extends Component {
       name: { val: "", status: "", sFlag: ""},
       email: { val: "", status: "", sFlag: "" },
       txtbody: { val: "", status: "", sFlag: "" },
+      sendCm: {status: "",sFlag: ""},
     };
 
     this.handleChange = this.handleChangeFunc.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  // submit function
+  handleSubmit(event) {
+    // preventdefult  
+    event.preventDefault();
+
+    // check for warning and turn it to err 
+    Object.entries(this.state).forEach((item) => { 
+      let checkitem = ['name','email','txtbody'];
+      // just for name & email & txtbody check
+      if (checkitem.includes(item[0])) {
+        let [itemName, itemVal, itemStatus, itemFlag] = [item[0],item[1].val, item[1].status, item[1].sFlag];
+        
+        if (itemFlag == 'fa-warning' ) {
+          this.setState({ [itemName]: { val: itemVal, status: itemStatus, sFlag: 'fa-wrong' } });
+        } else if (!itemFlag.length) {
+          this.setState({ [itemName]: { val: itemVal, status: 'لطفا فیلد را پر کنید.', sFlag: 'fa-wrong' } });
+        }
+      }    
+    });
+
+    // if all of the inbox write in a right way show the msg 
+    if (this.state.name.sFlag == 'fa-right' &&
+        this.state.email.sFlag == 'fa-right' &&
+        this.state.txtbody.sFlag == 'fa-right' ) {
+      this.setState({ sendCm: { status: 'با تشکر از نظر شما . بعد از تایید مدیریت روی سایت قرار میگیرد.', sFlag: 'fa-right' } });
+    }  
+
   }
 
   // tracking changes in form and answer them
   handleChangeFunc(event) {
-    console.log([event.target.id]);
     this.setState({ [event.target.id]: { val: event.target.value, status: "", sFlag: "" } });
     this.handleStatus(event.target.id, event.target.value);
   }
@@ -63,45 +91,60 @@ class FormContainer extends Component {
       } else {
           errStatus = "ایمیل وارد شده درست است.";
           flgStatus = right;
+        }
+      } else if (attrName == 'txtbody') {
+        if (!attrVal.length) {
+          errStatus = "لطفا فیلد را پر نمایید.";
+          flgStatus = wrong;
+        } else {
+          errStatus = "برای ارسال دکمه ارسال را بزنید.";
+          flgStatus = right;
       }
     }
+
     this.setState({ [attrName]: { val: attrVal, status: errStatus, sFlag: flgStatus } });
   }
 
   render() {
-    const { name, email, txtbody } = this.state;
+    const { name, email, txtbody ,sendCm} = this.state;
     return (
-      <form id="article-form" onSubmit={this.submitme}>
-        <Input
-          text="نام"
-          label="name"
-          type="text"
-          id="name"
-          value={name.val}
-          handleChange={this.handleChange}
-          status={name.status} 
-          flag={name.sFlag}
-        />
-        <Input
-          text="ایمیل"
-          label="email"
-          type="email"
-          id="email"
-          value={email.val}
-          handleChange={this.handleChange}
-          status={email.status} 
-          flag={email.sFlag}
-        />
-        <Textarea
-          // label, text, id, value, handleChange, status, flag
-          text="نظر خود را وارد فرمایید..."
-          label="نظر"
-          id="txtbody"
-          value={txtbody.val}
-          handleChange={this.handleChange}
-          status={txtbody.status}
-          flag={txtbody.sFlag}
-       />
+      <form id="article-form" onSubmit={this.handleSubmit}>
+        <div className="name-con">
+          <Input
+            text="نام"
+            label="name"
+            type="text"
+            id="name"
+            value={name.val}
+            handleChange={this.handleChange}
+            status={name.status} 
+            flag={name.sFlag}
+          />
+        </div>
+        <div>
+          <Input
+            text="ایمیل"
+            label="email"
+            type="email"
+            id="email"
+            value={email.val}
+            handleChange={this.handleChange}
+            status={email.status} 
+            flag={email.sFlag}
+          />
+        </div>
+        <div>
+          <Textarea
+            label="نظر"
+            id="txtbody"
+            value={txtbody.val}
+            handleChange={this.handleChange}
+            status={txtbody.status}
+            flag={txtbody.sFlag}
+          />
+          <Submit />
+        </div>
+        <p className={`${sendCm.sFlag} status`}>{sendCm.status}</p>
       </form>
     );
   }

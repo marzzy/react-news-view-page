@@ -35,7 +35,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(eot|ttf|woff|woff2)$/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         use: ['file-loader'],
       },
       {
@@ -49,10 +49,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               fallback: 'file-loader',
-              name: '[name][md5:hash].[ext]',
-              outputPath: 'assets/',
-              publicPath: '/assets/',
-            },
+            }
           },
         ],
       },

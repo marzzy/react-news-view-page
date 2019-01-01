@@ -1,27 +1,23 @@
-// html style
-// .main-container {
-//     & #right_col {
-//     }
-//     & #left_col {
-//     }
-// }
+// NEWS -----------------------------------
 .title {
     color: darkcyan;
-    font-weight: bold;
+    font-family: 'ShabnamBold';
     font-size: 17px;
 }
 .uptitle {
     color: #034242cc;
+    font-family: 'ShabnamLight';
     font-size: 14px;
 }
 .lead {
 	color: #034242cc;
 	font-size: 16px;
 }
+// ICON AND STATUS -----------------------------------
 .status {
    &::before {
-        font-size: 20px;
-        padding: 0 4px;
+       font-size: 20px;
+       padding: 0 4px;
         box-sizing: border-box;
     } 
 }
