@@ -9,16 +9,14 @@
     .main-container {
         // griding detail
         display: grid;
-        grid-template-columns: 3fr 1fr;
-        grid-template-areas: 
-        "rightcol leftcol";
+        grid-template-columns: 70% 30%;
         grid-column-gap: 16px;
         // griding child 
         & #right_col {
-        grid-area: rightcol;
+            grid-column: 1;
         }
         & #left_col {
-            grid-area: leftcol;
+            grid-column: 2;
         }
     }
 }

@@ -93,7 +93,7 @@ class NewsDetails extends Component {
           newsData.map(news => {
             const {id} = news;
             return (
-              <div key={id}>
+              <div key={id} className="box-style03">
                 <NewsCode thenews={news} />
               </div>
             );
