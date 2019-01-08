@@ -2,3 +2,4 @@ node_modules/
 dist/
 .npmignore
 package-lock.json
+npm-debug.log

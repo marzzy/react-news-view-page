@@ -64,7 +64,7 @@ const Radio = ({label,name,value}) => (
   </>
 )
 
-Textarea.propTypes = {
+Radio.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string,
   value: PropTypes.string.isRequired,

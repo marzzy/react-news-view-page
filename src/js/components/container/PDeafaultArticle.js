@@ -89,16 +89,17 @@ class NewsDetails extends Component {
     const { isLoading, newsData } = this.state;
     return (
       <Fragment>
-        {!isLoading ? (
-          newsData.map(news => {
-            const {id} = news;
-            return (
-              <div key={id} className="box-style03">
-                <NewsCode thenews={news} />
-              </div>
-            );
-          })
-        ) : (
+        {!isLoading 
+          ? (
+              newsData.map(news => {
+                const {id} = news;
+                return (
+                  <div key={id} className="box-style03">
+                    <NewsCode thenews={news} />
+                  </div>
+                );
+              })) 
+          : (
             <p>Loading...</p>
           )}
       </Fragment>

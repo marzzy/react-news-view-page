@@ -16,5 +16,9 @@
     "airbnb-base",
     "eslint:recommended",
     "plugin:react/recommended"
-  ]
+  ],
+  "env": {
+    "node": true,
+    "mocha": true
+  }
 }
