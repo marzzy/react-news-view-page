@@ -19,7 +19,7 @@ in this project by type code bellow in the intended directory
 ```
 npm install
 ```
- thats it, fill free to change and modify
+thats it, fill free to change and modify
 
 # Run page and test
 
@@ -40,20 +40,20 @@ npm run build
 
 ## Built With
 
-  # Setup With
-    * [npm](https://www.npmjs.com/) - as package manager
-    * [webpack](https://webpack.js.org/) - as module bundler
-    * [eslint](https://eslint.org/) - as JavaScript linting utility
-    * [babel](https://babeljs.io/) - as JavaScript transpiler
-    * some Npm package and webpack loader and plugin thats listed in [package.json](https://github.com/marzzy/react-news-view-page/blob/master/package.json) file
+### Setup With
+  * [npm](https://www.npmjs.com/) - as package manager
+  * [webpack](https://webpack.js.org/) - as module bundler
+  * [eslint](https://eslint.org/) - as JavaScript linting utility
+  * [babel](https://babeljs.io/) - as JavaScript transpiler
+  * some Npm package and webpack loader and plugin thats listed in [package.json](https://github.com/marzzy/react-news-view-page/blob/master/package.json) file
 
-  # Testing & Coverage
-    * [mocha](https://mochajs.org) - as JavaScript test framework running in the browser
-    * [chai](www.chaijs.com) - as a BDD / TDD assertion library
-    * [enzyme](https://github.com/airbnb/enzyme) - as JavaScript Testing utility for React
-    * [sinon](sinonjs.org) - as Standalone test spies, stubs and mocks for JavaScript
-    * [jsdom](https://www.npmjs.com/package/jsdom) - use to emulate enough of a subset of a web browser to be useful for testing
-    * [nyc](https://istanbul.js.org/docs/tutorials/mocha/) - Using Istanbul With Mocha as coverage 
+### Testing & Coverage
+  * [mocha](https://mochajs.org) - as JavaScript test framework running in the browser
+  * [chai](www.chaijs.com) - as a BDD / TDD assertion library
+  * [enzyme](https://github.com/airbnb/enzyme) - as JavaScript Testing utility for React
+  * [sinon](sinonjs.org) - as Standalone test spies, stubs and mocks for JavaScript
+  * [jsdom](https://www.npmjs.com/package/jsdom) - use to emulate enough of a subset of a web browser to be useful for testing
+  * [nyc](https://istanbul.js.org/docs/tutorials/mocha/) - Using Istanbul With Mocha as coverage 
 
 ## Authors
 
