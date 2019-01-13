@@ -22,9 +22,9 @@ Input.propTypes = {
   text: PropTypes.string.isRequired,
   // type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  flag: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  status: PropTypes.string,
+  flag: PropTypes.string,
   handleChange: PropTypes.func.isRequired
 }
 
@@ -46,9 +46,9 @@ const Textarea = ({ label, id, value, handleChange, status, flag }) => (
 Textarea.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  flag: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  status: PropTypes.string,
+  flag: PropTypes.string,
   handleChange: PropTypes.func.isRequired
 }
 

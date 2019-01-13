@@ -1,13 +1,6 @@
 
-import React from 'react';
-import { expect } from 'chai';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import Poll from '../src/js/components/container/PollForm';
 import { Submit, Radio } from "../src/js/components/presentational/Input";
-
-
-configure({ adapter: new Adapter() });
 
 describe('Poll', () => {
   it('have 3 instance of Radio component', () => {

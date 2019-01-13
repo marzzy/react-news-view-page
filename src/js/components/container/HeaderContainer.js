@@ -5,10 +5,8 @@ class MainHeader extends Component {
     return (
       <>
         <img src={require("../../../webroot/header.png")} alt="banner" />
-        <h1 className='App-title'>Welcome to React</h1>
-        <div>
-          <p>Title</p>
-        </div>
+        <h1 className='App-title'>صفحه خبر</h1>
+        <p></p>
       </>
     );
   }

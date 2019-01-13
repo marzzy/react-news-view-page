@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --open --mode development",
     "build": "rm -rf ./dist && webpack --mode production",
     "prepublish": "npm run build",
-    "test:unit": "mocha --require @babel/register --require ./test/helpers.js --require ./test/dom.js --require ignore-styles './test/*.spec.js'",
+    "test:unit": "nyc mocha --require @babel/register --require ./test/helpers.js --require ./test/dom.js --require ignore-styles './test/*.spec.js'",
     "test:unit:watch": "npm run test:unit -- --watch"
   },
   "repository": {
@@ -45,6 +45,7 @@
     "jsdom": "^13.1.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.8.3",
+    "nyc": "^13.1.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
