@@ -1,11 +1,7 @@
 
-// import { sinon } from 'sinon';
 import FormContainer from '../src/js/components/container/FormContainer';
-// import { Input } from "../src/js/components/presentational/Input";
 
-
-
-describe('Comment Form', () => {
+describe('Comment Form - general & submit check', () => {
   it('have an instance of Input component with attr "text"', () => {
     const wrapper = shallow(<FormContainer />);
     expect(wrapper.find('Input').find({ type: "text" })).to.have.lengthOf(1);
@@ -21,32 +17,6 @@ describe('Comment Form', () => {
     expect(wrapper.state().name.sFlag).to.equal('fa-wrong');
     expect(wrapper.state().email.sFlag).to.equal('fa-wrong');
     expect(wrapper.state().txtbody.sFlag).to.equal('fa-wrong');
-  });
-
-  it('have to fill all 3 inputs in right way to submit', () => {
-    // setup
-    const wrapper = shallow(<FormContainer />);
-    const mockedEventObj = { preventDefault: () => { } };
-    // assert
-    expect(wrapper.state().sendCm.sFlag).to.equal('');
-    // action
-    wrapper.setState({ name: { sFlag: 'fa-right', val: 'sara' } });
-    wrapper.update();
-    wrapper.find('form').simulate('submit', mockedEventObj);
-    // assert
-    expect(wrapper.state().name.sFlag).to.equal('fa-right');
-    expect(wrapper.state().email.sFlag).to.equal('fa-wrong');
-    expect(wrapper.state().txtbody.sFlag).to.equal('fa-wrong');
-    expect(wrapper.state().sendCm.sFlag).to.equal('');
-    // action
-    wrapper.setState({ email: { sFlag: 'fa-right' } });
-    wrapper.setState({ name: { sFlag: 'fa-right' } });
-    wrapper.setState({ txtbody: { sFlag: 'fa-right' } });
-    wrapper.update();
-    wrapper.find('form').simulate('submit', mockedEventObj);
-    // assert
-    expect(wrapper.state().sendCm.sFlag).to.equal('fa-right');
-
   });
 
   it('every one of the item that has warning should be err when submit', () => {
@@ -65,42 +35,203 @@ describe('Comment Form', () => {
     expect(wrapper.state().txtbody.sFlag).to.equal('fa-wrong');
   });
 
-  // it('check status for Input - name ', () => {
-  //   // setup
-  //   const fillName = sinon.spy();
-  //   const wrapper = mount(<FormContainer />);
-  //   const mockedEventObj = { preventDefault: () => {},target : {}};
+  it('when mount FormContainer , it shound be render an real input on it',()=> {
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // assert
+    expect(wrapper.find('input#name')).to.have.lengthOf(1);
+    expect(wrapper.find('input')).to.have.lengthOf(3);
+  });
 
-  //   // 1.could not acc the one letter as a name
-  //   // action
-  //   const inputWrapper = mount(<Input id="name" value={fillName} />);
-  //   wrapper.setState({ name: { val: 'saraaa' } });
-  //   (wrapper.find(Input).find({ id: "name" })).simulate('change', mockedEventObj);
-  //   // assert
-  //   expect(wrapper.state().name.sFlag).to.equal('fa-right');
-    
-  // });
-  // it('simulates click events', () => {
-  //   const onButtonClick = sinon.spy();
-  //   const wrapper = mount((
-  //     <Foo onButtonClick={onButtonClick} />
-  //   ));
-  //   wrapper.find('button').simulate('click');
-  //   expect(onButtonClick).to.have.property('callCount', 1);
-  // });
+  it('show write status when all of the input enter in the right way',() => {
+    // setup
+    const wrapper = mount(<FormContainer />);
+    const rightname = { target: { value: 'sara', id: 'name' }, preventDefault: () => {} };
+    const rightemail = { target: { value: 'example@gmail.com', id: 'email' }, preventDefault: () => {} };
+    const righttxt = { target: { value: 'this is a good test', id: 'txtbody' }, preventDefault: () => {} };
+    const mockedEventObj = { preventDefault: () => {} };
+    // action
+    wrapper.find('input#name').simulate('change', rightname);
+    wrapper.find('input#name').simulate('keydown', { keyCode: 13 });
 
-  // it('check status for Input - name ', () => {
-  //   // setup
-  //   const wrapper = shallow(<FormContainer />);
-  //   const mockedEventObj = { preventDefault: () => {},target : {}};
-  //   // 1.could not acc the one letter as a name
-  //   // action
-  //   wrapper.setState({ name: { val: 'saraaa' } });
-  //   (wrapper.find(Input).find({ id: "name" })).simulate('change', mockedEventObj);
-  //   // assert
-  //   expect(wrapper.state().name.sFlag).to.equal('fa-right');
-    
-  // });
+    wrapper.find('input#email').simulate('change', rightemail);
+    wrapper.find('input#email').simulate('keydown', { keyCode: 13 });
 
+    wrapper.find('textarea').simulate('change', righttxt);
+    wrapper.find('textarea').simulate('keydown', { keyCode: 13 });
+
+    wrapper.find('form').simulate('submit', mockedEventObj);
+    // assert
+    expect(wrapper.state().sendCm.sFlag).to.equal('fa-right');
+  });
+});
+
+describe('Comment Form - Input #name changes',() => {
+  it('enter in the right way', () => {
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action 
+    wrapper.find('input#name').simulate('change', { target: { value: 'sara', id: 'name' }, preventDefault: () => { } });
+    wrapper.find('input#name').simulate('keydown', { keyCode: 13 });
+    // assert
+    expect(wrapper.state().name.val).to.equal('sara');
+    expect(wrapper.state().name.sFlag).to.equal('fa-right');
+  });
+
+  it('enter enter bellow 2 char', () => {
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action
+    wrapper.find('input#name').simulate('change', { target: { value: 'a', id: 'name' }, preventDefault: () => { } });
+    wrapper.find('input#name').simulate('keydown', { keyCode: 13 });
+    // assert
+    expect(wrapper.state().name.val).to.equal('a');
+    expect(wrapper.state().name.sFlag).to.equal('fa-warning');
+    // action - let it be empty
+    wrapper.find('input#name').simulate('change', { target: { value: '', id: 'name' }, preventDefault: () => { } });
+    wrapper.find('input#name').simulate('keydown', { keyCode: 13 });
+    // assert
+    expect(wrapper.state().name.val).to.equal('');
+    expect(wrapper.state().name.sFlag).to.equal('fa-wrong');
+  });
+
+  it('let it be empty', () => {
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action 
+    wrapper.find('input#name').simulate('change', { target: { value: 'sara', id: 'name' }, preventDefault: () => { } });
+    wrapper.find('input#name').simulate('keydown', { keyCode: 13 });
+    // assert
+    expect(wrapper.state().name.val).to.equal('sara');
+    expect(wrapper.state().name.sFlag).to.equal('fa-right');
+    // action
+    wrapper.find('input#name').simulate('change', { target: { value: '', id: 'name' }, preventDefault: () => { } });
+    wrapper.find('input#name').simulate('keydown', { keyCode: 13 });
+    // assert
+    expect(wrapper.state().name.val).to.equal('');
+    expect(wrapper.state().name.sFlag).to.equal('fa-wrong');
+  });
+});
+
+describe('Comment Form - Textarea changes',() => {
+  it('enter in the right way', () => {
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action 
+    wrapper.find('textarea').simulate('change', { target: { value: 'this is a good test', id: 'txtbody' }, preventDefault: () => { } });
+    wrapper.find('textarea').simulate('keydown', { keyCode: 13 });
+    // assert
+    expect(wrapper.state().txtbody.val).to.equal('this is a good test');
+    expect(wrapper.state().txtbody.sFlag).to.equal('fa-right');
+  });
+
+  it('let it be empty', () => {
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action 
+    wrapper.find('textarea').simulate('change', { target: { value: 'this is a good test', id: 'txtbody' }, preventDefault: () => { } });
+    wrapper.find('textarea').simulate('keydown', { keyCode: 13 });
+    // assert
+    expect(wrapper.state().txtbody.val).to.equal('this is a good test');
+    expect(wrapper.state().txtbody.sFlag).to.equal('fa-right');
+    // action 
+    wrapper.find('textarea').simulate('change', { target: { value: '', id: 'txtbody' }, preventDefault: () => { } });
+    wrapper.find('textarea').simulate('keydown', { keyCode: 13 });
+    // assert
+    expect(wrapper.state().txtbody.val).to.equal('');
+    expect(wrapper.state().txtbody.sFlag).to.equal('fa-wrong');
+  });
+});
+
+describe('Comment Form - Input #email changes',() => {
+  it('enter in the right way',() => {
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action
+    wrapper.find('input#email').simulate('change',{target:{ value: 'example@gmil.com', id: 'email' } , preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example@gmil.com');
+    expect(wrapper.state().email.sFlag).to.equal('fa-right');
+  });
+
+  it('enter without @ ',()=>{
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action - example
+    wrapper.find('input#email').simulate('change',{ target: { value: 'example', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example');
+    expect(wrapper.state().email.sFlag).to.equal('fa-warning');
+    // action - example.gmail.com
+    wrapper.find('input#email').simulate('change',{ target: { value: 'example.gmail.com', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example.gmail.com');
+    expect(wrapper.state().email.sFlag).to.equal('fa-warning');
+  });
+
+  it('enter without . ',()=>{
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action - example@
+    wrapper.find('input#email').simulate('change',{ target: { value: 'example@', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example@');
+    expect(wrapper.state().email.sFlag).to.equal('fa-warning');
+    // action - example@gmailcom
+    wrapper.find('input#email').simulate('change',{ target: { value: 'example@gmail@com', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example@gmail@com');
+    expect(wrapper.state().email.sFlag).to.equal('fa-warning');
+  });
+
+  it('enter . before @ ',()=>{
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action - example.gmail@com
+    wrapper.find('input#email').simulate('change',{ target: { value: 'example.gmail@com', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example.gmail@com');
+    expect(wrapper.state().email.sFlag).to.equal('fa-warning');
+  });
+
+  it('enter . in the end',()=>{
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action - example@gmail.com.
+    wrapper.find('input#email').simulate('change',{ target: { value: 'example@gmail.com.', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example@gmail.com.');
+    expect(wrapper.state().email.sFlag).to.equal('fa-warning');
+    // action - example@gmail.
+    wrapper.find('input#email').simulate('change',{ target: { value: 'example@gmail.', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example@gmail.');
+    expect(wrapper.state().email.sFlag).to.equal('fa-warning');
+  });
+
+  it('let it be empty',()=>{
+    // setup
+    const wrapper = mount(<FormContainer />);
+    // action 
+    wrapper.find('input#email').simulate('change',{ target: { value: 'example@gmail.com.', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('example@gmail.com.');
+    expect(wrapper.state().email.sFlag).to.equal('fa-warning');
+    // action
+    wrapper.find('input#email').simulate('change',{ target: { value: '', id: 'email' }, preventDefault: () => {} });
+    wrapper.find('input#email').simulate('keydown',{ keyCode: 13 });
+    // assert
+    expect(wrapper.state().email.val).to.equal('');
+    expect(wrapper.state().email.sFlag).to.equal('fa-wrong');
+  });
 
 });

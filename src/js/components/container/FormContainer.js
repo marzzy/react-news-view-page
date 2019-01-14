@@ -92,7 +92,7 @@ class FormContainer extends Component {
           errStatus = "ایمیل وارد شده درست است.";
           flgStatus = right;
         }
-      } else if (attrName == 'txtbody') {
+    } else {
         if (!attrVal.length) {
           errStatus = "لطفا فیلد را پر نمایید.";
           flgStatus = wrong;

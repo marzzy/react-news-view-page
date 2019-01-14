@@ -4,8 +4,8 @@ this is a react project (with sass using benefit of ccs3) to create a web page (
 
 ## status
 
-[![Build Status](https://travis-ci.org/hubotio/hubot.svg?branch=master)](https://travis-ci.org/hubotio/hubot)
-[![Coverage Status](https://coveralls.io/repos/github/marzzy/react-news-view-page/badge.svg?branch=master)](https://coveralls.io/github/marzzy/react-news-view-page?branch=master)
+[![Build Status](https://travis-ci.org/marzzy/react-news-view-page.svg?branch=first-check)](https://travis-ci.org/marzzy/react-news-view-page)
+[![Coverage Status](https://coveralls.io/repos/github/marzzy/react-news-view-page/badge.svg?branch=first-check)](https://coveralls.io/github/marzzy/react-news-view-page?branch=first-check)
 
 
 ## Contributing

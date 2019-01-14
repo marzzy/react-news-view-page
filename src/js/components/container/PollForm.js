@@ -35,7 +35,7 @@ class Poll extends Component {
         <p className="title">
           این یک نظر سنجی تستی است
         </p>
-        <div onChange={this.handleRadioCheck}>
+        <div id="radio-con" onChange={this.handleRadioCheck}>
           <Radio 
             label='آیتم اول' 
             name="poll-item"
