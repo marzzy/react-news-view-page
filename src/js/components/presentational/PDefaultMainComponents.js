@@ -10,7 +10,6 @@ function NewsCode (params) {
       <p className="uptitle" >{uptitle}</p>
       <p className="title" >{title}</p>
       <p className="lead" >{lead}</p>
-      <hr />
     </>
   )
 }
@@ -32,7 +31,6 @@ function MainNewsComp (params) {
       </div>
       <p className="lead" >{lead}</p>
       <p className="content" >{content}</p>
-      <hr />
     </>
   )
 }

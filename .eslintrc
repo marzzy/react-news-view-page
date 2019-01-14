@@ -4,17 +4,26 @@
     "react"
   ],
   "rules": {
-     "import/no-extraneous-dependencies": [
-       "error",
+    "import/no-extraneous-dependencies": [
+      "error",
       { "devDependencies": true }
     ]
   },
   "globals": {
-    "document": true
+    "document": true,
+    "React": true,
+    "ReactDOM": true,
+    "PropTypes": true,
+    "shallow": true,
+    "expect": true
   },
  "extends": [
     "airbnb-base",
     "eslint:recommended",
     "plugin:react/recommended"
-  ]
+  ],
+  "env": {
+    "node": true,
+    "mocha": true
+  }
 }
