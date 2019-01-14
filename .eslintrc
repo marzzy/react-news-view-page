@@ -15,9 +15,10 @@
     "ReactDOM": true,
     "PropTypes": true,
     "shallow": true,
-    "expect": true
+    "expect": true,
+    "mount": true
   },
- "extends": [
+  "extends": [
     "airbnb-base",
     "eslint:recommended",
     "plugin:react/recommended"

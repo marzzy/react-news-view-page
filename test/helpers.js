@@ -1,5 +1,9 @@
-// require 'coveralls' Coveralls.wear!
-// // import { sinon, spy } from 'sinon';
+// // ------------------
+// // Sinon
+// // ------------------
+// import sinon from 'sinon';
+
+// global.sinon = sinon;
 
 // ------------------
 // Chai
