@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { JSDOM } from 'jsdom';
+
 
 const { window } = new JSDOM('<!doctype html><html><body></body></html>');
 
@@ -19,3 +21,5 @@ global.navigator = {
 };
 
 copyProps(window, global);
+
+axios.defaults.adapter = require('axios/lib/adapters/http');

@@ -1,9 +1,9 @@
-// // ------------------
-// // Sinon
-// // ------------------
-// import sinon from 'sinon';
+// ------------------
+// Sinon
+// ------------------
+import sinon from 'sinon';
 
-// global.sinon = sinon;
+global.sinon = sinon;
 
 // ------------------
 // Chai

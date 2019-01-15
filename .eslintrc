@@ -16,7 +16,8 @@
     "PropTypes": true,
     "shallow": true,
     "expect": true,
-    "mount": true
+    "mount": true,
+    "sinon": true
   },
   "extends": [
     "airbnb-base",
