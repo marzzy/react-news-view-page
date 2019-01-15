@@ -21,6 +21,25 @@ npm install
 ```
 thats it, fill free to change and modify
 
+# Map
+
+in the root you can find :
+1. The output file are in dist folder and it will create after build the project
+2. The src code is in src folder that you can acces it in root directory,src folder include :
+  2.1. css folder: thats contain styles sass file of project
+  2.2. sample folder: its contain json that we use it for content of page(using axios)
+  2.3. webroot folder: its contain static files that we use in project,like header image
+  2.4. index.html: main html that's news article page
+  2.5. index.js: main js file that's routed in package.json file
+  2.6. main.scss: main sass file thats contain everyone item in css folder
+  2.7. js folder: it contains all the react component devided as container (usually class components) and presentational (usually func commponents) 
+3. The test folder is in root,before add func or class to js,you should write the test func on it - we are working in TDD way ;) - the test folder contain : 
+  3.1. so many *.spec.js file: they are used for testing , and if you want to write test,you can add one to them
+  3.2. dom.js file: we want to simulate browser functionality with test and we are happen it,using this file (using jsdom)
+  3.3. helper.js: there is many repeatativ import in test files,to decreace import them lots of time,we are define them in this file in global,sowe can use them without need importing each time
+4. there is so many other files in root you can see,like .babelrc or .eslintrc and etc. : they are using customize packages thats we are using in the projects
+
+
 # Run page and test
 
 in the intended directory type code bellow to run program in developer mode :
@@ -33,7 +52,7 @@ in other terminal in the directory run :
 npm run test:unit:watch
 ```
 
-before set commit ,save changes and run this code in the directory : 
+before set commit ,save changes and run this code in the directory to build output in the dist folder in root project directory : 
 ```
 npm run build
 ```
@@ -49,9 +68,9 @@ npm run build
 
 ### Testing & Coverage
   * [mocha](https://mochajs.org) - as JavaScript test framework running in the browser
-  * [chai](www.chaijs.com) - as a BDD / TDD assertion library
+  * [chai](https:/www.chaijs.com) - as a BDD / TDD assertion library
   * [enzyme](https://github.com/airbnb/enzyme) - as JavaScript Testing utility for React
-  * [sinon](sinonjs.org) - as Standalone test spies, stubs and mocks for JavaScript
+  * [sinon](https:/sinonjs.org) - as Standalone test spies, stubs and mocks for JavaScript
   * [jsdom](https://www.npmjs.com/package/jsdom) - use to emulate enough of a subset of a web browser to be useful for testing
   * [nyc](https://istanbul.js.org/docs/tutorials/mocha/) - Using Istanbul With Mocha as coverage 
 

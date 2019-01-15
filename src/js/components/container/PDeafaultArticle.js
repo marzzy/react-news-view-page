@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import { NewsCode, MainNewsComp} from '../presentational/PDefaultMainComponents';
