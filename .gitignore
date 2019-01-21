@@ -4,3 +4,4 @@ dist/
 package-lock.json
 npm-debug.log
 .nyc_output
+src/js/components/lang/

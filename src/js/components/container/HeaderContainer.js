@@ -6,7 +6,6 @@ class MainHeader extends Component {
       <>
         <img src={require("../../../webroot/header.png")} alt="banner" />
         <h1 className='App-title'>صفحه خبر</h1>
-        <p></p>
       </>
     );
   }

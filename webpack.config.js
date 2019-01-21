@@ -1,6 +1,10 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  // devtool: 'source-map',
+  // output: {
+  //   devtoolModuleFilenameTemplate: 'webpack://[namespace]/[resource-path]?[loaders]'
+  // },
   module: {
     rules: [
       {
