@@ -1,2 +1,2 @@
 import './main.scss';
-import './js/components/container/NewsPage';
+import './js/components/pages/Route';
